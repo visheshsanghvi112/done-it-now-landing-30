@@ -24,7 +24,7 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Create mailto link with form data
     const subject = encodeURIComponent(`Project Inquiry from ${formData.name}`);
     const body = encodeURIComponent(`Hi,
@@ -37,9 +37,9 @@ ${formData.project}
 Please get back to me at: ${formData.email}
 
 Thanks!`);
-    
+
     window.location.href = `mailto:visheshsanghvi112@gmail.com?subject=${subject}&body=${body}`;
-    
+
     toast({
       title: "Opening email client...",
       description: "Your default email app should open with the message pre-filled.",
@@ -52,40 +52,31 @@ Thanks!`);
   };
 
   return (
-    <section id="contact" className="py-24 px-4 bg-gradient-to-br from-purple-50 via-pink-50 to-violet-100 relative overflow-hidden">
-      {/* Background decorative elements with orchid theme */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 right-20 w-40 h-40 bg-gradient-to-br from-purple-300/30 to-pink-300/30 rounded-full blur-2xl"></div>
-        <div className="absolute bottom-20 left-20 w-60 h-60 bg-gradient-to-br from-violet-300/20 to-purple-300/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-br from-pink-200/10 to-purple-200/10 rounded-full blur-3xl"></div>
-      </div>
-      
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section id="contact" className="py-24 px-4 bg-background relative border-t border-border">
+      <div className="max-w-5xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-purple-200">
-            <Send className="h-4 w-4" />
-            Let's Work Together
+          <div className="inline-flex items-center gap-2 bg-muted/30 text-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-6 border border-border">
+            <Send className="h-4 w-4 text-muted-foreground" />
+            <span>Let's Work Together</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-violet-600 bg-clip-text text-transparent mb-8 tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-6 tracking-tighter">
             Ready to Get Started?
           </h2>
-          <p className="text-xl text-gray-600 font-light">
+          <p className="text-lg text-muted-foreground">
             Tell me what you need. I'll make it happen.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Contact Form */}
-          <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-2xl shadow-purple-200/50">
-            <CardHeader className="pb-6">
-              <CardTitle className="flex items-center text-xl">
-                <div className="p-2 bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg mr-3">
-                  <Send className="h-5 w-5 text-purple-600" />
-                </div>
+          <Card className="bg-card border border-border rounded-md shadow-sm">
+            <CardHeader className="pb-6 border-b border-border/50">
+              <CardTitle className="text-lg font-semibold flex items-center gap-2">
+                <Send className="h-5 w-5 text-muted-foreground" />
                 Send Project Details
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pt-6">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <Input
                   placeholder="Your name"
@@ -93,7 +84,7 @@ Thanks!`);
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="bg-white/70 border-purple-200/50 h-12 text-base focus:border-purple-400"
+                  className="bg-transparent border-border rounded-md h-12 text-base focus:ring-1 focus:ring-ring focus:border-border"
                 />
                 <Input
                   type="email"
@@ -102,7 +93,7 @@ Thanks!`);
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="bg-white/70 border-purple-200/50 h-12 text-base focus:border-purple-400"
+                  className="bg-transparent border-border rounded-md h-12 text-base focus:ring-1 focus:ring-ring focus:border-border"
                 />
                 <Textarea
                   placeholder="What do you need built? Be as specific as possible..."
@@ -111,106 +102,85 @@ Thanks!`);
                   onChange={handleInputChange}
                   required
                   rows={5}
-                  className="bg-white/70 border-purple-200/50 resize-none text-base focus:border-purple-400"
+                  className="bg-transparent border-border rounded-md resize-none text-base focus:ring-1 focus:ring-ring focus:border-border"
                 />
-                <Button type="submit" className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 h-12 text-base group shadow-lg shadow-purple-200/50">
-                  Send Project Details
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 text-base rounded-md font-medium transition-colors">
+                  Send Message
                 </Button>
               </form>
             </CardContent>
           </Card>
 
           {/* Contact Information */}
-          <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-2xl shadow-purple-200/50">
-            <CardHeader className="pb-6">
-              <CardTitle className="flex items-center text-xl">
-                <div className="p-2 bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg mr-3">
-                  <MessageSquare className="h-5 w-5 text-purple-600" />
-                </div>
+          <Card className="bg-card border border-border rounded-md shadow-sm">
+            <CardHeader className="pb-6 border-b border-border/50">
+              <CardTitle className="text-lg font-semibold flex items-center gap-2">
+                <MessageSquare className="h-5 w-5 text-muted-foreground" />
                 Quick Contact
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <p className="text-gray-600 leading-relaxed">
-                Prefer to chat directly? Reach out on WhatsApp for immediate response or send an email.
+            <CardContent className="space-y-6 pt-6">
+              <p className="text-muted-foreground leading-relaxed text-sm">
+                Prefer to chat directly? Reach out on WhatsApp for an immediate response or send an email.
               </p>
-              
-              <Button 
+
+              <Button
                 onClick={handleWhatsApp}
-                className="w-full bg-green-600 hover:bg-green-700 text-white h-12 group shadow-lg"
+                variant="outline"
+                className="w-full h-12 border-border hover:bg-muted font-medium rounded-md justify-start px-4"
               >
-                <MessageSquare className="mr-3 h-5 w-5" />
+                <MessageSquare className="mr-3 h-5 w-5 text-muted-foreground" />
                 Message on WhatsApp
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
-              
-              <Button 
-                variant="outline" 
-                className="w-full h-12 group border-2 border-purple-200 hover:bg-purple-50"
+
+              <Button
+                variant="outline"
                 onClick={() => window.location.href = 'mailto:visheshsanghvi112@gmail.com'}
+                className="w-full h-12 border-border hover:bg-muted font-medium rounded-md justify-start px-4"
               >
-                <Mail className="mr-3 h-5 w-5" />
+                <Mail className="mr-3 h-5 w-5 text-muted-foreground" />
                 Send Email Directly
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
 
               {/* Contact Details */}
-              <div className="pt-6 border-t border-purple-200/50">
-                <div className="space-y-4">
+              <div className="pt-6 border-t border-border/50">
+                <div className="space-y-4 text-sm font-medium">
                   <div className="flex items-center gap-3">
-                    <Mail className="h-5 w-5 text-purple-600" />
-                    <p className="text-gray-700">visheshsanghvi112@gmail.com</p>
+                    <Mail className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-foreground">visheshsanghvi112@gmail.com</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <MessageSquare className="h-5 w-5 text-purple-600" />
-                    <p className="text-gray-700">+91 79772 82697</p>
+                    <MessageSquare className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-foreground">+91 79772 82697</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <MapPin className="h-5 w-5 text-purple-600" />
-                    <p className="text-gray-700">Mumbai, Charni Road</p>
+                    <MapPin className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-foreground">Mumbai, Charni Road</span>
                   </div>
                 </div>
               </div>
 
               {/* Social Links */}
-              <div className="pt-4 border-t border-purple-200/50">
+              <div className="pt-4 border-t border-border/50">
                 <div className="flex gap-3">
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="sm"
-                    className="flex-1 border-purple-200 hover:bg-purple-50"
+                    className="flex-1 bg-transparent border-border hover:bg-muted text-foreground rounded-md text-xs h-9"
                     onClick={() => window.open('https://www.visheshsanghvi.me/', '_blank')}
                   >
-                    <Globe className="mr-2 h-4 w-4" />
+                    <Globe className="mr-2 h-3.5 w-3.5" />
                     Portfolio
                   </Button>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="sm"
-                    className="flex-1 border-purple-200 hover:bg-purple-50"
+                    className="flex-1 bg-transparent border-border hover:bg-muted text-foreground rounded-md text-xs h-9"
                     onClick={() => window.open('https://www.linkedin.com/in/vishesh-sanghvi-96b16a237/', '_blank')}
                   >
-                    <Linkedin className="mr-2 h-4 w-4" />
+                    <Linkedin className="mr-2 h-3.5 w-3.5" />
                     LinkedIn
                   </Button>
-                </div>
-              </div>
-
-              <div className="pt-6 border-t border-purple-200/50">
-                <div className="flex items-center gap-3 mb-4">
-                  <Clock className="h-5 w-5 text-purple-600" />
-                  <p className="font-semibold text-gray-800">Response Time</p>
-                </div>
-                <div className="space-y-2 text-sm text-gray-600">
-                  <p className="flex items-center gap-2">
-                    <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                    WhatsApp: Usually within 1-2 hours
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                    Email: Within 24 hours
-                  </p>
                 </div>
               </div>
             </CardContent>
